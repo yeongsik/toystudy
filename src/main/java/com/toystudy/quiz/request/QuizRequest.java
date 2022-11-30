@@ -21,11 +21,11 @@ public class QuizRequest {
     @NotBlank(message = "내용이 입력되지 않았습니다.")
     private String content;
 
-    @NotBlank(message = "빈칸 키워드가 입력되지 않았습니다.")
-    private String keyword;
+//    @NotBlank(message = "빈칸 키워드가 입력되지 않았습니다.")
+//    private String keyword;
 
-    private Date lastSolvedTime;
+//    private Date lastSolvedTime;
 
-    private Integer finish;
+//    private Integer finish;
 
 }

@@ -1,6 +1,5 @@
 package com.toystudy.quiz.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +8,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
+@NoArgsConstructor
 public class Quiz {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +24,20 @@ public class Quiz {
     @Lob
     private String content;
 
-    private String keyword;
+//    private String keyword;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastSolvedTime;
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date lastSolvedTime;
 
-    private Integer finish;
+//    private Integer finish;
 
+    @Builder
+    public Quiz(Category category, String name, String content, String keyword, Date lastSolvedTime, Integer finish) {
+        this.category = category;
+        this.name = name;
+        this.content = content;
+//        this.keyword = keyword;
+//        this.lastSolvedTime = lastSolvedTime;
+//        this.finish = finish;
+    }
 }

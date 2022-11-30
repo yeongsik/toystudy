@@ -40,7 +40,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
       </el-menu-item>
     </el-menu>
   </header>
-  <router-view></router-view>
+  <RouterView />
 </template>
 
 <style>

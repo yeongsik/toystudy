@@ -23,8 +23,8 @@ public class QuizService {
                 .name(request.getName())
                 .category(request.getCategory())
                 .content(request.getContent())
-                .keyword(request.getKeyword())
-                .finish(0)
+//                .keyword(request.getKeyword())
+//                .finish(0)
                 .build());
 
     }
@@ -37,9 +37,9 @@ public class QuizService {
                 .category(quiz.getCategory())
                 .name(quiz.getName())
                 .content(quiz.getContent())
-                .keyword(quiz.getKeyword())
-                .finish(quiz.getFinish())
-                .lastSolvedTime(quiz.getLastSolvedTime())
+//                .keyword(quiz.getKeyword())
+//                .finish(quiz.getFinish())
+//                .lastSolvedTime(quiz.getLastSolvedTime())
                 .build();
 
         return response;
@@ -53,9 +53,9 @@ public class QuizService {
                         .category(quiz.getCategory())
                         .name(quiz.getName())
                         .content(quiz.getContent())
-                        .keyword(quiz.getKeyword())
-                        .lastSolvedTime(quiz.getLastSolvedTime())
-                        .finish(quiz.getFinish())
+//                        .keyword(quiz.getKeyword())
+//                        .lastSolvedTime(quiz.getLastSolvedTime())
+//                        .finish(quiz.getFinish())
                         .build()
         ).collect(Collectors.toList());
 
