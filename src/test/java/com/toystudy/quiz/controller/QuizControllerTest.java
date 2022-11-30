@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.toystudy.quiz.domain.Category;
 import com.toystudy.quiz.domain.Quiz;
 import com.toystudy.quiz.repository.QuizRepository;
+import com.toystudy.quiz.request.QuizEdit;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,8 +43,6 @@ class QuizControllerTest {
                 .category(Category.DB)
                 .name("Key")
                 .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
-                .keyword("Tuple")
-                .finish(0)
                 .build();
 
         String json = objectMapper.writeValueAsString(request);
@@ -67,8 +66,6 @@ class QuizControllerTest {
                 .category(null)
                 .name("")
                 .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
-                .keyword("Tuple")
-                .finish(0)
                 .build();
 
 
@@ -95,8 +92,6 @@ class QuizControllerTest {
                                 .category(Category.DB)
                                 .name("Key")
                                 .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
-                                .keyword("Tuple")
-                                .finish(0)
                                 .build())
                 .collect(Collectors.toList());
 
@@ -112,6 +107,36 @@ class QuizControllerTest {
     }
 
     @Test
+    @DisplayName("퀴즈 수정 테스트")
+    void modifyQuizTest () throws Exception {
+
+        //given
+
+        Quiz request = Quiz.builder()
+                .category(Category.DB)
+                .name("Key")
+                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                .build();
+
+        QuizEdit quizEdit = QuizEdit.builder()
+                .category(Category.JAVA)
+                .name("String")
+                .content("스트링 내용")
+                .build();
+
+        quizRepository.save(request);
+
+        //expected
+
+        mockMvc.perform(MockMvcRequestBuilders.patch("/quizzes/{quizId}", request.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(quizEdit)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+    @Test
     @DisplayName("퀴즈 삭제 테스트")
     void deleteQuizTest () throws Exception {
 
@@ -120,8 +145,6 @@ class QuizControllerTest {
                 .category(Category.DB)
                 .name("Key")
                 .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
-                .keyword("Tuple")
-                .finish(0)
                 .build();
 
         quizRepository.save(request);

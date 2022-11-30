@@ -1,5 +1,6 @@
 package com.toystudy.quiz.controller;
 
+import com.toystudy.quiz.request.QuizEdit;
 import com.toystudy.quiz.request.QuizRequest;
 import com.toystudy.quiz.response.QuizResponse;
 import com.toystudy.quiz.service.QuizService;
@@ -34,6 +35,12 @@ public class QuizController {
     @GetMapping("/quizzes")
     public List<QuizResponse> getQuizList(Pageable page) {
         return quizService.getQuizList(page);
+    }
+
+    // 퀴즈 수정
+    @PatchMapping("/quizzes/{quizId}")
+    public void updateQuiz(@PathVariable Long quizId, @RequestBody QuizEdit quizEdit) {
+        quizService.update(quizId,quizEdit);
     }
 
     @DeleteMapping("/quizzes/{quizId}")

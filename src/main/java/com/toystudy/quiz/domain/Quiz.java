@@ -1,5 +1,6 @@
 package com.toystudy.quiz.domain;
 
+import com.toystudy.quiz.request.QuizEdit;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class Quiz {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "QUIZ_ID")
     private Long id;
 
@@ -39,5 +41,11 @@ public class Quiz {
 //        this.keyword = keyword;
 //        this.lastSolvedTime = lastSolvedTime;
 //        this.finish = finish;
+    }
+
+    public void edit(QuizEdit quizEdit) {
+        this.category = quizEdit.getCategory() == null ? this.category : quizEdit.getCategory();
+        this.name = quizEdit.getName() == null || quizEdit.getName() == "" ? this.name : quizEdit.getName();
+        this.content = quizEdit.getContent() == null || quizEdit.getContent() == "" ? this.content : quizEdit.getContent();
     }
 }
