@@ -118,4 +118,25 @@ class QuizServiceTest {
         Assertions.assertEquals(0,reponseList.get(0).getFinish());
 
     }
+
+    @Test
+    @DisplayName("퀴즈 삭제")
+    void deleteQuizTest () throws Exception {
+        //given
+        Quiz request = Quiz.builder()
+                .category(Category.DB)
+                .name("Key")
+                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                .keyword("Tuple")
+                .finish(0)
+                .build();
+
+        quizRepository.save(request);
+
+        //when
+        quizService.delete(request.getId());
+
+        //then
+        Assertions.assertEquals(0,quizRepository.count());
+    }
 }

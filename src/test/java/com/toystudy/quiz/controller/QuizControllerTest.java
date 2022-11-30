@@ -110,4 +110,26 @@ class QuizControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.length()", Matchers.is(10)))
                 .andDo(MockMvcResultHandlers.print());
     }
+
+    @Test
+    @DisplayName("퀴즈 삭제 테스트")
+    void deleteQuizTest () throws Exception {
+
+        //given
+        Quiz request = Quiz.builder()
+                .category(Category.DB)
+                .name("Key")
+                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                .keyword("Tuple")
+                .finish(0)
+                .build();
+
+        quizRepository.save(request);
+
+        //expected
+        mockMvc.perform(MockMvcRequestBuilders.delete("/quizzes/{quizId}", request.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
 }

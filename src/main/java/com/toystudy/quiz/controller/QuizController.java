@@ -35,4 +35,9 @@ public class QuizController {
     public List<QuizResponse> getQuizList(Pageable page) {
         return quizService.getQuizList(page);
     }
+
+    @DeleteMapping("/quizzes/{quizId}")
+    public void deleteQuiz(@PathVariable Long quizId) {
+        quizService.delete(quizId);
+    }
 }

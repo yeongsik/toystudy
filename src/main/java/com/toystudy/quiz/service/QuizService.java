@@ -61,4 +61,11 @@ public class QuizService {
 
         return responseList;
     }
+
+    public void delete(Long id) {
+        Quiz quiz = quizRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않은 퀴즈입니다."));
+
+        quizRepository.delete(quiz);
+    }
 }
