@@ -20,14 +20,8 @@ public class QuizService {
     private final QuizRepository quizRepository;
 
     public void saveQuiz(QuizRequest request) {
-
-        quizRepository.save(Quiz.builder()
-                .name(request.getName())
-                .category(request.getCategory())
-                .content(request.getContent())
-//                .keyword(request.getKeyword())
-//                .finish(0)
-                .build());
+        request.convertQuiz();
+        quizRepository.save(request.convertQuiz());
 
     }
 
@@ -38,10 +32,7 @@ public class QuizService {
                 .id(quiz.getId())
                 .category(quiz.getCategory())
                 .name(quiz.getName())
-                .content(quiz.getContent())
-//                .keyword(quiz.getKeyword())
-//                .finish(quiz.getFinish())
-//                .lastSolvedTime(quiz.getLastSolvedTime())
+                .answer(quiz.getAnswer())
                 .build();
 
         return response;
@@ -54,10 +45,7 @@ public class QuizService {
                         .id(quiz.getId())
                         .category(quiz.getCategory())
                         .name(quiz.getName())
-                        .content(quiz.getContent())
-//                        .keyword(quiz.getKeyword())
-//                        .lastSolvedTime(quiz.getLastSolvedTime())
-//                        .finish(quiz.getFinish())
+                        .answer(quiz.getAnswer())
                         .build()
         ).collect(Collectors.toList());
 

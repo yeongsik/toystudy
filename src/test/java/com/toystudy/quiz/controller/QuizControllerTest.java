@@ -42,7 +42,7 @@ class QuizControllerTest {
         Quiz request = Quiz.builder()
                 .category(Category.DB)
                 .name("Key")
-                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                .answer("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
                 .build();
 
         String json = objectMapper.writeValueAsString(request);
@@ -65,7 +65,7 @@ class QuizControllerTest {
         Quiz request = Quiz.builder()
                 .category(null)
                 .name("")
-                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                .answer("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
                 .build();
 
 
@@ -91,7 +91,7 @@ class QuizControllerTest {
                         Quiz.builder()
                                 .category(Category.DB)
                                 .name("Key")
-                                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                                .answer("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
                                 .build())
                 .collect(Collectors.toList());
 
@@ -115,13 +115,13 @@ class QuizControllerTest {
         Quiz request = Quiz.builder()
                 .category(Category.DB)
                 .name("Key")
-                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                .answer("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
                 .build();
 
         QuizEdit quizEdit = QuizEdit.builder()
                 .category(Category.JAVA)
                 .name("String")
-                .content("스트링 내용")
+                .answer("스트링 내용")
                 .build();
 
         quizRepository.save(request);
@@ -144,7 +144,7 @@ class QuizControllerTest {
         Quiz request = Quiz.builder()
                 .category(Category.DB)
                 .name("Key")
-                .content("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
+                .answer("검색, 정렬시 Tuple을 구분할 수 있는 기준이 되는 Attribute")
                 .build();
 
         quizRepository.save(request);
